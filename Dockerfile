@@ -29,4 +29,9 @@ RUN apt-get install -y byobu curl git htop man unzip vim wget
 # Grab the checked out source
 RUN mkdir -p /workdir
 WORKDIR /workdir
+RUN wget https://services.gradle.org/distributions/gradle-4.10.2-bin.zip
+RUN unzip -d /opt/gradle /workdir/gradle-*.zip
 COPY . /workdir
+COPY gradle.sh /etc/profile.d/
+RUN chmod +x /etc/profile.d/gradle.sh
+RUN source /etc/profile.d/gradle.sh
