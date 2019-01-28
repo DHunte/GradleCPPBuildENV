@@ -17,7 +17,6 @@ ENV LC_ALL en_US.UTF-8
 
 # Install dependencies
 ENV DEBIAN_FRONTEND noninteractive
-RUN add-apt-repository ppa:cwchien/gradle && \
 RUN apt-get update && \
 RUN apt-get -y upgrade && \
 RUN apt-get install -qq wget unzip build-essential cmake gcc libcunit1-dev libudev-dev && \
