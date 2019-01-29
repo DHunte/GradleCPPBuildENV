@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get install locales
 
@@ -37,12 +37,18 @@ RUN apt-get install -y unzip
 RUN apt-get install -y vim
 RUN apt-get install -y wget
 
-# Grab the checked out source
+#create work dir
 RUN mkdir -p /workdir
 WORKDIR /workdir
+
+# Grab the checked out source
 RUN wget https://services.gradle.org/distributions/gradle-4.10.2-bin.zip
 RUN unzip -d /opt/gradle /workdir/gradle-*.zip
 COPY . /workdir
 COPY gradle.sh /etc/profile.d/
 RUN chmod +x /etc/profile.d/gradle.sh
 RUN sh /etc/profile.d/gradle.sh
+
+# Get the RPI ARM toolchains
+RUN wget https://github.com/raspberrypi/tools/archive/master.zip
+RUN unzip master.zip
