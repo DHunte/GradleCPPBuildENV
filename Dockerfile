@@ -48,7 +48,17 @@ COPY . /workdir
 COPY gradle.sh /etc/profile.d/
 RUN chmod +x /etc/profile.d/gradle.sh
 RUN sh /etc/profile.d/gradle.sh
+ENV GRADLE_HOME="/opt/gradle/gradle-4.10.2/"
+ENV PATH=${GRADLE_HOME}/bin:${PATH}
 
 # Get the RPI ARM toolchains
 RUN wget https://github.com/raspberrypi/tools/archive/master.zip
 RUN unzip master.zip
+
+
+#set tools-master as env variable to access compiler commands
+#from gradle
+#arm-linux-gnueabihf-g++ -std=c++11 -o hello_world_cpp hello_world.cpp
+ENV PATH=${PATH}:/workdir/tools-master/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin
+RUN gradle -v
+Run arm-linux-gnueabihf-g++ -v
