@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+    
+    gradle:
+      build: ./
+      restart: unless-stopped
+      command : gradle
+      volumes:
+        - ./:/workdirsrc

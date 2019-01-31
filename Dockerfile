@@ -61,4 +61,4 @@ RUN unzip master.zip
 #arm-linux-gnueabihf-g++ -std=c++11 -o hello_world_cpp hello_world.cpp
 ENV PATH=${PATH}:/workdir/tools-master/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin
 RUN gradle -v
-Run arm-linux-gnueabihf-g++ -v
+RUN arm-linux-gnueabihf-g++ -v
